@@ -1,0 +1,30 @@
+
+public class dropdown {
+public static void main(String[] args) {
+	WebDriverManager.chromedriver().setup();
+
+	ChromeDriver driver = new ChromeDriver();
+	
+	driver.get("http://testleaf.herokuapp.com/pages/checkbox.html");
+WebElement java = driver.findElement(By.xpath("(//input[@type='checkbox'])[1]"));
+java.click();
+
+WebElement cPlus = driver.findElement(By.xpath("(//input[@type='checkbox'])[5]"));
+cPlus.click();
+boolean selected = cPlus.isSelected();
+System.out.println(selected);
+
+WebElement unSelect = driver.findElement(By.xpath("(//input[@type='checkbox'])[8]"));
+unSelect.click();
+
+	
+List<WebElement> allBoxes = driver.findElements(By.xpath("//input[@type='checkbox']"));
+//for each 
+for (WebElement boxes : allBoxes) {
+	if (!boxes.isSelected()) {
+		boxes.click();
+	}
+}
+
+}
+}

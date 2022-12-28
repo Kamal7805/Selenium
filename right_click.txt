@@ -1,0 +1,33 @@
+package com.selenium.com;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.server.handler.SendKeys;
+
+public class Right_Click {
+
+	public static void main(String[] args) throws InterruptedException, AWTException {
+				System.setProperty("webdriver.chrome.driver", "C:\\Users\\Welcome\\old java\\Selenium\\drivers\\chromedriver.exe");
+				WebDriver driver =new ChromeDriver();
+				driver.get("https://google.co.in");
+				WebElement gmail = driver.findElement(By.xpath("//a[text()='Gmail']"));
+				Actions ac = new Actions(driver);
+				ac.contextClick(gmail).perform();
+				Thread.sleep(5000);
+				Robot ro =new Robot();
+				ro.keyPress(KeyEvent.VK_DOWN);	
+				ro.keyRelease(KeyEvent.VK_DOWN);
+				
+				
+	
+	
+	}
+
+}

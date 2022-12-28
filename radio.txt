@@ -1,0 +1,31 @@
+package com.selenium.com;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Radio_Button {
+
+		public static void main(String[] args) {
+	System.setProperty("webdriver.chrome.driver","C:\\Users\\Welcome\\eclipse-workspace-latest\\Demo\\driver\\chromedriverlat.exe");
+			WebDriver driver = new ChromeDriver();
+		driver.get("http://www.leafground.com/pages/radio.html");
+	---------------------------- TO select the radio button------------------	
+		WebElement select = driver.findElement(By.xpath("(//input[@type='radio'])[1]"));
+		select.click();
+			
+		WebElement unChecked = driver.findElement(By.xpath("(//input[@type='radio'])[3]"));
+		boolean fal = unChecked.isSelected();
+		System.out.println(fal);
+		WebElement checked = driver.findElement(By.xpath("(//input[@type='radio'])[4]"));
+		
+		boolean fal = unChecked.isSelected();
+		System.out.println(fal);
+		
+		boolean tru = checked.isSelected();
+		System.out.println(tru);
+	 WebElement oneToTwe = driver.findElement(By.xpath("(//input[@type='radio'])[5]"));
+	oneToTwe.click();		
+		}
+}

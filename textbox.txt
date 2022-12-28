@@ -1,0 +1,40 @@
+package com.selenium.com;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class NewStart {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", 
+				"C:\\Users\\Welcome\\eclipse-workspace-latest\\Demo\\driver\\chromedriverlat.exe");
+		WebDriver driver =new ChromeDriver();
+		driver.get("http://www.leafground.com/pages/Edit.html");
+		driver.manage().window().maximize();
+					WebElement eMail = driver.findElement(By.xpath("(//input[@id='email'])"));
+				eMail.sendKeys("gohankamal@gmail.com");
+				
+				WebElement append = driver.findElement(By.xpath("//*[@id=\"contentblock\"]/section/div[2]/div/div/input"));
+				append.sendKeys("with words");
+				
+				WebElement getVal = driver.findElement(By.name("username"));
+			String val = getVal.getAttribute("style");
+				System.out.println(val);
+				
+				
+				
+				WebElement clear = driver.findElement(By.xpath("(//input[@name='username'])[2]"));
+				clear.clear();
+				
+				WebElement checkDisBox = driver.findElement(By.xpath("//*[@id=\"contentblock\"]/section/div[5]/div/div/input"));
+				boolean enabled = checkDisBox.isEnabled();
+				System.out.println(enabled);
+				
+				
+				Thread.sleep(5000);
+				driver.close();
+	}
+
+}

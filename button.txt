@@ -1,0 +1,47 @@
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Button_TestLeaf {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Welcome\\eclipse-workspace-latest\\Demo\\driver\\chromedriverlat.exe");
+		WebDriver driver = new ChromeDriver();
+	
+		//Go to Home Page
+		/*
+		driver.get("http://www.leafground.com/pages/Button.html");
+		WebElement Homebut = driver.findElement(By.id("home"));
+		Homebut.click();
+		*/
+		//Get the xy Position
+		/*
+		 
+		driver.get("http://www.leafground.com/pages/Button.html");
+		WebElement getPosBut = driver.findElement(By.id("position"));
+		Point xypoint = getPosBut.getLocation();
+		int xValue = xypoint.getX();
+		int yValue = xypoint.getY ();
+		System.out.println(xValue);
+		System.out.println(yValue);
+		*/
+		//find the button color
+		/*
+		driver.get("http://www.leafground.com/pages/Button.html");
+		WebElement colorButton = driver.findElement(By.id("color"));
+		String color = colorButton.getCssValue("background-color");
+		System.out.println("Button color is :"+color);
+	*/
+		driver.get("http://www.leafground.com/pages/Button.html");
+		WebElement buttonSize = driver.findElement(By.id("size"));
+		int height = buttonSize.getSize().getHeight();
+		int width = buttonSize.getSize().getWidth();
+		System.out.println("button height is :"+height);
+		System.out.println("button width is :"+width);
+	}
+
+}

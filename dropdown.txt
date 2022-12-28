@@ -1,0 +1,47 @@
+package com.rightclick;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class DropDown {
+
+	public static void main(String[] args) {
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Welcome\\old java\\Right\\driver\\chromedriver.exe");
+			WebDriver driver = new ChromeDriver();
+			driver.get("http://www.leafground.com/pages/Dropdown.html");
+			driver.manage().window().maximize();
+			
+			WebElement dropdown1 = driver.findElement(By.id("dropdown1"));
+			Select select =new Select(dropdown1);
+			select.selectByIndex(4);
+		
+			WebElement down2 = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[2]/select"));
+			Select slec = new Select(down2);
+			slec.selectByVisibleText("Appium");
+		
+			WebElement dropdown3 = driver.findElement(By.name("dropdown3"));
+			Select sel =new Select(dropdown3);
+			sel.selectByValue("4");
+		
+			//dropdown4
+				List<WebElement> options = select.getOptions();
+			int size = options.size();
+		System.out.println("Number Of Elements "+size);
+			
+		//	WebElement dropdown5 = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[5]"));
+	//		dropdown5.sendKeys("Loadrunner");
+			
+			/*WebElement multiselect = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[6]/select"));
+				Select multiselectbox = new Select(multiselect);
+				multiselectbox.deselectByIndex(1);
+				multiselectbox.deselectByIndex(3);*/
+	}
+	
+	
+
+}

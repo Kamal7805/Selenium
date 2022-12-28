@@ -1,0 +1,23 @@
+package com.rightclick;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Click_Hidden_Element {
+		public static void main(String[] args) throws InterruptedException {
+				System.setProperty("webdriver.chrome.driver","C:\\Users\\Welcome\\old java\\Right\\driver\\chromedriver.exe");
+				WebDriver driver = new ChromeDriver();
+				driver.get("http://automationpractice.com/index.php");
+				
+				WebElement dresses = driver.findElement(By.xpath("//a[@title='Dresses'])[2]"));
+				Actions a =new Actions(driver);
+				a.moveToElement(dresses).perform();
+				Thread.sleep(5000);
+				WebElement casual = driver.findElement(By.xpath("//a[@title='Casual Dresses'])[2]"));
+				a.moveToElement(casual).perform();
+				casual.click();				
+		}
+}

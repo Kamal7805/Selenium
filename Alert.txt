@@ -1,0 +1,37 @@
+package com.selenium.com;
+
+import java.sql.DriverAction;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Alert {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Welcome\\eclipse-workspace-latest\\Demo\\driver\\chromedriverlat.exe");
+		WebDriver driver = new ChromeDriver();
+	driver.get("http://www.leafground.com/pages/Alert.html");
+	WebElement alertPop = driver.findElement(By.xpath("//*[@id=\'contentblock\']/section/div[1]/div/div/button"));
+	alertPop.click();
+	org.openqa.selenium.Alert alert = driver.switchTo().alert();
+	Thread.sleep(3000);
+	alert.accept();
+	
+	WebElement confirmAlert = driver.findElement(By.xpath("(//button[@onclick='confirmAlert()'])"));
+	confirmAlert.click();
+	org.openqa.selenium.Alert alert2 = driver.switchTo().alert();
+	Thread.sleep(3000);
+	alert2.dismiss();
+	
+	WebElement promptAlert = driver.findElement(By.xpath("(//button[@onclick='confirmPrompt()'])"));
+	promptAlert.click();
+	org.openqa.selenium.Alert alert3 = driver.switchTo().alert();
+	alert3.sendKeys("It's Me Gohan");
+	Thread.sleep(3000);
+	alert3.accept();
+	
+	}
+
+}
