@@ -1,0 +1,27 @@
+package testscripts;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Drag_Drap {
+	public static void main(String[] args) {
+		
+	WebDriverManager.chromedriver().setup();
+	ChromeOptions op = new ChromeOptions();
+	op.addArguments("--remote-allow-origins=*");
+	op.addArguments("--start-maximized");
+	WebDriver driver =new ChromeDriver(op);
+	driver.get("https://www.leafground.com/drag.xhtml");
+	WebElement drag = driver.findElement(By.id("form:drag_content"));
+	WebElement drop = driver.findElement(By.xpath("//p[text()='Drop here']"));
+	Actions ac =new Actions(driver);
+//	ac.clickAndHold(drag).moveToElement(drop).release(drop).build().perform();
+	ac.dragAndDrop(drag, drop).build().perform();
+	}
+}
