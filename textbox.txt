@@ -38,3 +38,43 @@ public class NewStart {
 	}
 
 }
+
+-----------------------------------------
+package sdetQaInterview;
+
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TextBox {
+	public static void main(String[] args) throws InterruptedException {
+WebDriverManager.chromedriver().setup();
+WebDriver driver =new ChromeDriver();
+
+driver.manage().window().maximize();
+driver.get("https://demo.nopcommerce.com/login?returnUrl=%2F");
+
+WebElement email = driver.findElement(By.id("Email"));
+email.sendKeys("kamal");  // TO the Values to the TextBox
+
+Thread.sleep(2000);
+email.clear();  // TO clear the Given Text Boxt
+Thread.sleep(2000);
+
+//getText() -- will get the inner text.
+WebElement newCustomer = driver.findElement(By.xpath("//strong[text()='New Customer']"));
+System.out.println("He is "+newCustomer.getText());
+
+//getAttribute() -- will get attribute value
+System.out.println(email.getAttribute("data-val-email"));
+
+driver.close();
+
+}
+	}
+
