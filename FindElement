@@ -1,0 +1,50 @@
+package sdetQaInterview;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class FindElement {
+public static void main(String[] args) {
+	WebDriverManager.chromedriver().setup();
+	WebDriver driver =new ChromeDriver();
+	driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+	
+	driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+	
+	
+	//FindElement Returns Single webElement
+	// If the locator is Wrong or unable to find means It will through Noscuh Element Exception
+	//Noscuh Element Exception will occur if the locator is incorrect or cannot be find.
+	
+	WebElement email = driver.findElement(By.name("username"));
+	email.sendKeys("Kamal");
+	
+	
+	//FindElemnt --- 1 of 2 xpath, Which Element First Meets in the webpage that will get
+	
+	WebElement userName = driver.findElement(By.xpath("//label[@class='oxd-label']"));
+	System.out.println(userName.getText());
+	
+	//FindElements will return Multiple elements
+	//If the element path is not correct or unable to be found, it will return 0.
+	
+	List<WebElement> list = driver.findElements(By.xpath("//label[@class='oxd-label']"));
+	
+	int size = list.size();
+	System.out.println("Number of Elements : "+size);
+	System.out.println("The Elements are :");
+	for (WebElement getAllWebelement: list) {
+	//Get Text Will return the Inner text of the WebElement
+		System.out.println(getAllWebelement.getText());
+	}
+	driver.close();
+}
+}
+
