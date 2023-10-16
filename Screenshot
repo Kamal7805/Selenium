@@ -1,0 +1,54 @@
+package screenshot;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.io.FileHandler;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class ScreenShots {
+
+public static void main(String[] args) throws IOException, InterruptedException {
+	WebDriverManager.chromedriver().setup();
+	ChromeOptions op =new ChromeOptions();
+	op.addArguments("--remote-allow-origins=*");
+	op.addArguments("--start-maximized");
+	WebDriver driver =new ChromeDriver(op);
+	
+	driver.get("https://ultimateqa.com/dummy-automation-websites/");
+//	how to captue screeshot of full page
+
+//  takescreenshot variable cannot hold the webdriver instance so thats the reason we need to typecast 
+//	because webdriver and TakeScreenshot both also a different interface
+
+	// Instead of webdriver if we give ChromeDriver  that accepts because remotewebdriver 
+//	and chromedriver already implemented javascript executor and takeScreenshot 	
+	
+//	TakesScreenshot ts = (TakesScreenshot)driver;
+//	File src = ts.getScreenshotAs(OutputType.FILE);
+//	File trg =new File(".\\screenshot\\homepage.png") ;
+//	FileHandler.copy(src, trg);
+//	Thread.sleep(3000);
+
+	
+	// how to capture particular image or particular portion
+	//here getScreenshotAs is method from WebElement so don't need Take Screenshot
+	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+	WebElement img = driver.findElement(By.xpath("//img[@class='entered lazyloaded']"));
+	File source = img.getScreenshotAs(OutputType.FILE);
+	File destination =new File(".\\screenshot\\image1.png");
+	FileHandler.copy(source, destination);
+	driver.close();
+	
+}
+}
