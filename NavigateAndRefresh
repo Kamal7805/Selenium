@@ -1,0 +1,33 @@
+package sdetQaInterview;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.Navigation;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class NavigateAndRefresh {
+public static void main(String[] args) {
+	WebDriverManager.chromedriver().setup();
+	WebDriver driver =new ChromeDriver();
+	
+	driver.get("https://www.amazon.in/");
+	driver.navigate().to("https://www.facebook.com/login/"); //Using Navigate One Url to Another Url
+	driver.navigate().back(); //Amazon
+	driver.navigate().forward();//FaceBook
+	driver.navigate().refresh();//Refresh Will reload the page
+	
+	//Get method is used navigate particular Url(website) and wait till the page load driver.
+	//navigate is used to navigate to particular Url and does not wait to page load.
+	//It maintains browser history or cookies nacigate back & Forward
+	
+	//Method2 for navigate
+	Navigation nav = driver.navigate();
+
+driver.close();
+}
+}
