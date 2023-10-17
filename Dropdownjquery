@@ -1,0 +1,69 @@
+package sdetQaInterview;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class DropdownJquery {
+	public static void main(String[] args) {
+	WebDriverManager.chromedriver().setup();
+	ChromeOptions op =new ChromeOptions();
+	op.addArguments("--remote-allow-origins=*");
+	op.addArguments("--start-maximized");
+	op.addArguments("disable-notifications");
+	WebDriver driver =new ChromeDriver(op);
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	driver.get("https://www.jqueryscript.net/demo/Drop-Down-Combo-Tree/");
+	
+	driver.findElement(By.id("justAnInputBox")).click();
+	//To Select Only one element
+//selectChoiceValues(driver,"choice 1");
+// To Pass multiple values
+//selectChoiceValues(driver,"choice 1","choice 2","choice 2 3","choice 5","choice 6 2 1");
+//To pass all the values	
+selectChoiceValues(driver,"all");
+	}
+	//String... value  --holds a multiple value when i pass single valur or multiple value or all options 
+public static void selectChoiceValues(WebDriver driver,String... value){      
+		
+	List<WebElement> choiceList = driver.findElements(By.xpath("//span[@class='comboTreeItemTitle']"));
+	System.out.println(choiceList.size());
+		if (!value[0].equalsIgnoreCase("all")) //This If condition is pass one or multiple value
+		{
+			for (WebElement item : choiceList    // here we have all the webelemnts
+			{
+				String text =item.getText();       //Storing all the values in text(Variable)
+		
+				for (String val: value ) {    //Storing the values into val to call the values which we need by using text.equals
+					if (text.equals(val)) {  //Giving a condition to pass the values which is equals to the text(variable)
+						item.click();
+						break;
+					}
+				}
+			}
+		}
+		else {          //this will pass all the values
+			try {         //here we use try catch block because the webelement stored 45 element in the list                              
+				for (WebElement item : choiceList) {   //other dropdown elements are also stored in the list, only few elements are we need to call
+							item.click();                    // so it will throw an exception (ElementNotInteractableException) to overcome this exception he use trycatch block
+						
+						}
+			} catch (Exception e) { 
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+			
+		}
+	}	
+
+}
